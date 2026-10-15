@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { sum, mean, median } from './sum.mjs';
+import { sum, mean, median, mode } from './sum.mjs';
 
 test('sum adds numbers', () => {
   assert.equal(sum([1, 2, 3]), 6);
@@ -45,4 +45,24 @@ test('median does not change its input', () => {
   const xs = [3, 1, 2];
   median(xs);
   assert.deepEqual(xs, [3, 1, 2]);
+});
+
+test('mode returns the most frequent value', () => {
+  assert.equal(mode([1, 2, 2, 3]), 2);
+  assert.equal(mode([5]), 5);
+});
+
+test('mode picks the smallest value on a tie', () => {
+  assert.equal(mode([3, 1, 1, 3]), 1);
+  assert.equal(mode([2, 1]), 1);
+});
+
+test('mode of an empty list throws', () => {
+  assert.throws(() => mode([]), RangeError);
+});
+
+test('mode does not change its input', () => {
+  const xs = [3, 1, 1, 3];
+  mode(xs);
+  assert.deepEqual(xs, [3, 1, 1, 3]);
 });
