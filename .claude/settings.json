@@ -1,13 +1,14 @@
 {
+  "enabledPlugins": {
+    "foreman@foreman": true
+  },
   "extraKnownMarketplaces": {
     "foreman": {
       "source": {
-        "source": "directory",
-        "path": "/Users/naveensakhamuri/IdeaProjects/foreman"
+        "source": "github",
+        "repo": "naveensakhamuri/foreman",
+        "ref": "v0.1.0"
       }
     }
-  },
-  "enabledPlugins": {
-    "foreman@foreman": true
   }
 }
