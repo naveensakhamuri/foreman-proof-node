@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { sum, mean, median, mode } from './sum.mjs';
+import { sum, mean, median, mode, range } from './sum.mjs';
 
 test('sum adds numbers', () => {
   assert.equal(sum([1, 2, 3]), 6);
@@ -94,4 +94,24 @@ test('mode does not change its input', () => {
   const xs = [3, 1, 1, 3];
   mode(xs);
   assert.deepEqual(xs, [3, 1, 1, 3]);
+});
+
+test('range is the largest minus the smallest', () => {
+  assert.equal(range([3, 9, 1]), 8);
+  assert.equal(range([-2, 5]), 7);
+});
+
+test('range of a single value is 0', () => {
+  assert.equal(range([5]), 0);
+  assert.equal(range([4, 4]), 0);
+});
+
+test('range of an empty list throws', () => {
+  assert.throws(() => range([]), RangeError);
+});
+
+test('range does not change its input', () => {
+  const xs = [3, 9, 1];
+  range(xs);
+  assert.deepEqual(xs, [3, 9, 1]);
 });
