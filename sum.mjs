@@ -44,3 +44,9 @@ export function range(numbers) {
   }
   return max - min;
 }
+
+export function sumOfSquares(numbers) {
+  if (!Array.isArray(numbers)) throw new TypeError('sumOfSquares() expects an array');
+  if (!numbers.every(Number.isFinite)) throw new TypeError('sumOfSquares() expects finite numbers');
+  return numbers.reduce((total, n) => total + n * n, 0);
+}
