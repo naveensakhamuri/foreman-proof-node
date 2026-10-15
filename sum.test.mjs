@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { sum, mean, median, mode, range } from './sum.mjs';
+import { sum, mean, median, mode, range, sumOfSquares } from './sum.mjs';
 
 test('sum adds numbers', () => {
   assert.equal(sum([1, 2, 3]), 6);
@@ -114,4 +114,37 @@ test('range does not change its input', () => {
   const xs = [3, 9, 1];
   range(xs);
   assert.deepEqual(xs, [3, 9, 1]);
+});
+
+test('sumOfSquares adds each value squared', () => {
+  assert.equal(sumOfSquares([1, 2, 3]), 14);
+  assert.equal(sumOfSquares([5]), 25);
+});
+
+test('sumOfSquares of an empty list is 0', () => {
+  assert.equal(sumOfSquares([]), 0);
+});
+
+test('sumOfSquares squares negatives and decimals', () => {
+  assert.equal(sumOfSquares([-2, 0.5]), 4.25);
+  assert.equal(sumOfSquares([-3]), 9);
+});
+
+test('sumOfSquares of a non-array throws TypeError', () => {
+  assert.throws(() => sumOfSquares('1,2'), TypeError);
+  assert.throws(() => sumOfSquares(undefined), TypeError);
+  assert.throws(() => sumOfSquares({ length: 0 }), TypeError);
+});
+
+test('sumOfSquares of an array with a non-number or non-finite value throws TypeError', () => {
+  assert.throws(() => sumOfSquares([1, '2']), TypeError);
+  assert.throws(() => sumOfSquares([1, null]), TypeError);
+  assert.throws(() => sumOfSquares([NaN]), TypeError);
+  assert.throws(() => sumOfSquares([1, Infinity]), TypeError);
+});
+
+test('sumOfSquares does not change its input', () => {
+  const xs = [1, 2, 3];
+  sumOfSquares(xs);
+  assert.deepEqual(xs, [1, 2, 3]);
 });
