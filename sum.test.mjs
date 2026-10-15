@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { sum, mean, median, mode, range, sumOfSquares } from './sum.mjs';
+import { sum, mean, median, mode, range, sumOfSquares, product } from './sum.mjs';
 
 test('sum adds numbers', () => {
   assert.equal(sum([1, 2, 3]), 6);
@@ -147,4 +147,38 @@ test('sumOfSquares does not change its input', () => {
   const xs = [1, 2, 3];
   sumOfSquares(xs);
   assert.deepEqual(xs, [1, 2, 3]);
+});
+
+test('product multiplies numbers', () => {
+  assert.equal(product([2, 3, 4]), 24);
+  assert.equal(product([5]), 5);
+});
+
+test('product of an empty list is 1', () => {
+  assert.equal(product([]), 1);
+});
+
+test('product handles negatives, decimals and zero', () => {
+  assert.equal(product([-2, 0.5]), -1);
+  assert.equal(product([-2, -3]), 6);
+  assert.equal(product([0, 5]), 0);
+});
+
+test('product of a non-array throws TypeError', () => {
+  assert.throws(() => product('1,2'), TypeError);
+  assert.throws(() => product(undefined), TypeError);
+  assert.throws(() => product({ length: 0 }), TypeError);
+});
+
+test('product of an array with a non-number or non-finite value throws TypeError', () => {
+  assert.throws(() => product([1, '2']), TypeError);
+  assert.throws(() => product([1, null]), TypeError);
+  assert.throws(() => product([NaN]), TypeError);
+  assert.throws(() => product([1, Infinity]), TypeError);
+});
+
+test('product does not change its input', () => {
+  const xs = [2, 3, 4];
+  product(xs);
+  assert.deepEqual(xs, [2, 3, 4]);
 });
