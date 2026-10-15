@@ -50,3 +50,9 @@ export function sumOfSquares(numbers) {
   if (!numbers.every(Number.isFinite)) throw new TypeError('sumOfSquares() expects finite numbers');
   return numbers.reduce((total, n) => total + n * n, 0);
 }
+
+export function product(numbers) {
+  if (!Array.isArray(numbers)) throw new TypeError('product() expects an array');
+  if (!numbers.every(Number.isFinite)) throw new TypeError('product() expects finite numbers');
+  return numbers.reduce((total, n) => total * n, 1);
+}
