@@ -1,6 +1,8 @@
 // Small number helpers.
 
 export function sum(numbers) {
+  if (!Array.isArray(numbers)) throw new TypeError('sum() expects an array');
+  if (!numbers.every(Number.isFinite)) throw new TypeError('sum() expects finite numbers');
   return numbers.reduce((total, n) => total + n, 0);
 }
 

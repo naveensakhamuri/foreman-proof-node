@@ -7,6 +7,35 @@ test('sum adds numbers', () => {
   assert.equal(sum([]), 0);
 });
 
+test('sum still adds valid numbers', () => {
+  assert.equal(sum([1, 2]), 3);
+  assert.equal(sum([-1, 0.5]), -0.5);
+});
+
+test('sum of a non-array throws TypeError', () => {
+  assert.throws(() => sum('1,2'), TypeError);
+  assert.throws(() => sum(undefined), TypeError);
+  assert.throws(() => sum({ length: 0 }), TypeError);
+  assert.throws(() => sum({ reduce: () => 0 }), TypeError);
+});
+
+test('sum of an array with a non-number throws TypeError', () => {
+  assert.throws(() => sum([1, '2']), TypeError);
+  assert.throws(() => sum([1, null]), TypeError);
+});
+
+test('sum of an array with a non-finite number throws TypeError', () => {
+  assert.throws(() => sum([1, NaN]), TypeError);
+  assert.throws(() => sum([Infinity]), TypeError);
+  assert.throws(() => sum([1, -Infinity]), TypeError);
+});
+
+test('sum does not change its input', () => {
+  const xs = [1, 2];
+  sum(xs);
+  assert.deepEqual(xs, [1, 2]);
+});
+
 test('mean averages numbers', () => {
   assert.equal(mean([1, 2, 3]), 2);
   assert.equal(mean([5]), 5);
