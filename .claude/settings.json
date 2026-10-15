@@ -1,0 +1,13 @@
+{
+  "extraKnownMarketplaces": {
+    "foreman": {
+      "source": {
+        "source": "directory",
+        "path": "/Users/naveensakhamuri/IdeaProjects/foreman"
+      }
+    }
+  },
+  "enabledPlugins": {
+    "foreman@foreman": true
+  }
+}
