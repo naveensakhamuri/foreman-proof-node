@@ -1,0 +1,9 @@
+{
+  "version": 1,
+  "project": { "name": "Foreman proof (Node)" },
+  "checks": [{ "run": "npm test", "when": "always" }],
+  "ship": {
+    "steps": ["merge-main", "resources", "push", "pr", "ci", "merge"],
+    "ci": { "required": ["test"] }
+  }
+}
