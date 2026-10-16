@@ -17,6 +17,8 @@ test('sum of a non-array throws TypeError', () => {
   assert.throws(() => sum(undefined), TypeError);
   assert.throws(() => sum({ length: 0 }), TypeError);
   assert.throws(() => sum({ reduce: () => 0 }), TypeError);
+  assert.throws(() => sum(new Float64Array([1, 2])), TypeError);
+  assert.throws(() => sum({ every: () => true, reduce: () => 0 }), TypeError);
 });
 
 test('sum of an array with a non-number throws TypeError', () => {
