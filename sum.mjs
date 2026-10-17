@@ -47,8 +47,13 @@ export function range(numbers) {
 
 export function sumOfSquares(numbers) {
   if (!Array.isArray(numbers)) throw new TypeError('sumOfSquares() expects an array');
-  if (!numbers.every(Number.isFinite)) throw new TypeError('sumOfSquares() expects finite numbers');
-  return numbers.reduce((total, n) => total + n * n, 0);
+  let total = 0;
+  for (let i = 0; i < numbers.length; i++) {
+    const n = numbers[i];
+    if (!Number.isFinite(n)) throw new TypeError('sumOfSquares() expects finite numbers');
+    total += n * n;
+  }
+  return total;
 }
 
 export function product(numbers) {
