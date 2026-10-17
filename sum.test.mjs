@@ -89,7 +89,7 @@ test('mode picks the smallest value on a tie', () => {
 });
 
 test('mode of an empty list throws', () => {
-  assert.throws(() => mode([]), RangeError);
+  assert.throws(() => mode([]), { name: 'RangeError', message: 'mode() of an empty list' });
 });
 
 test('mode does not change its input', () => {
