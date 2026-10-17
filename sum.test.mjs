@@ -136,6 +136,18 @@ test('sumOfSquares of a non-array throws TypeError', () => {
   assert.throws(() => sumOfSquares('1,2'), TypeError);
   assert.throws(() => sumOfSquares(undefined), TypeError);
   assert.throws(() => sumOfSquares({ length: 0 }), TypeError);
+  assert.throws(() => sumOfSquares({ every: () => true, reduce: () => 0 }), TypeError);
+  assert.throws(() => sumOfSquares(new Float64Array([1, 2])), TypeError);
+  assert.throws(() => sumOfSquares('1,2'), { name: 'TypeError', message: /expects an array/ });
+});
+
+test('sumOfSquares of a sparse array throws TypeError', () => {
+  assert.throws(() => sumOfSquares([1, , 2]), { name: 'TypeError', message: /expects finite numbers/ });
+  assert.throws(() => sumOfSquares(new Array(3)), TypeError);
+});
+
+test('sumOfSquares of finite values that overflow returns Infinity', () => {
+  assert.equal(sumOfSquares([1e200, 1e200]), Infinity);
 });
 
 test('sumOfSquares of an array with a non-number or non-finite value throws TypeError', () => {
