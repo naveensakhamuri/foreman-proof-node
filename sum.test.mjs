@@ -170,6 +170,8 @@ test('product of a non-array throws TypeError', () => {
   assert.throws(() => product('1,2'), TypeError);
   assert.throws(() => product(undefined), TypeError);
   assert.throws(() => product({ length: 0 }), TypeError);
+  assert.throws(() => product(new Float64Array([2, 3])), TypeError);
+  assert.throws(() => product({ every: () => true, reduce: () => 0 }), TypeError);
 });
 
 test('product of an array with a non-number or non-finite value throws TypeError', () => {
