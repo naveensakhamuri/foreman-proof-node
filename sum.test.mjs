@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { sum, mean, median, mode, range, sumOfSquares, product, variance, max, min } from './sum.mjs';
+import { sum, mean, median, mode, range, sumOfSquares, product, variance, max, min, clamp } from './sum.mjs';
 
 test('variance is the mean squared distance from the mean', () => {
   assert.equal(variance([2, 4, 4, 4, 5, 5, 7, 9]), 4);
@@ -290,4 +290,43 @@ test('min does not change its input', () => {
   const input = [3, 9, 2];
   min(input);
   assert.deepEqual(input, [3, 9, 2]);
+});
+
+test('clamp returns a value already in range', () => {
+  assert.equal(clamp(5, 0, 10), 5);
+  assert.equal(clamp(0, 0, 10), 0);
+  assert.equal(clamp(10, 0, 10), 10);
+});
+
+test('clamp raises a value below min to min', () => {
+  assert.equal(clamp(-1, 0, 10), 0);
+  assert.equal(clamp(-0.5, 0, 10), 0);
+});
+
+test('clamp lowers a value above max to max', () => {
+  assert.equal(clamp(11, 0, 10), 10);
+  assert.equal(clamp(10.5, 0, 10), 10);
+});
+
+test('clamp works with negative bounds and equal bounds', () => {
+  assert.equal(clamp(-20, -10, -5), -10);
+  assert.equal(clamp(0, -10, -5), -5);
+  assert.equal(clamp(7, 3, 3), 3);
+});
+
+test('clamp with min greater than max throws RangeError', () => {
+  assert.throws(() => clamp(1, 10, 0), { name: 'RangeError', message: 'clamp() expects min <= max' });
+});
+
+test('clamp of a non-finite or non-number argument throws TypeError', () => {
+  for (const args of [[NaN, 0, 10], [5, -Infinity, 10], [5, 0, Infinity], ['5', 0, 10], [5, null, 10], [undefined, 0, 10]]) {
+    assert.throws(() => clamp(...args), { name: 'TypeError', message: 'clamp() expects finite numbers' });
+  }
+});
+
+test('clamp checks argument types before bound order', () => {
+  // min > max is also true for these, so a bounds-first check would throw RangeError instead.
+  assert.throws(() => clamp(1, Infinity, 0), { name: 'TypeError', message: 'clamp() expects finite numbers' });
+  assert.throws(() => clamp(1, '10', 0), { name: 'TypeError', message: 'clamp() expects finite numbers' });
+  assert.throws(() => clamp(1, NaN, 0), { name: 'TypeError' });
 });
