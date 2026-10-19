@@ -74,3 +74,10 @@ export function max(numbers) {
   if (!numbers.every(Number.isFinite)) throw new TypeError('max() expects finite numbers');
   return numbers.reduce((a, b) => (b > a ? b : a));
 }
+
+export function min(numbers) {
+  if (!Array.isArray(numbers)) throw new TypeError('min() expects an array');
+  if (numbers.length === 0) throw new RangeError('min() of an empty list');
+  if (!numbers.every(Number.isFinite)) throw new TypeError('min() expects finite numbers');
+  return numbers.reduce((a, b) => (b < a ? b : a));
+}
