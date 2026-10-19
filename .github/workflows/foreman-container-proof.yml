@@ -23,6 +23,17 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 150
     steps:
+      # Foreman's ci step reads a pull request's checks with this call. A fine-grained token
+      # has no "Checks" permission, so find out now, before a story is built.
+      - name: Check the token can read CI results
+        env:
+          GH_TOKEN: ${{ secrets.FOREMAN_GH_TOKEN }}
+        run: |
+          gh api repos/$GITHUB_REPOSITORY --jq '"repository: \(.full_name)"'
+          count=$(gh pr view 15 --repo "$GITHUB_REPOSITORY" --json statusCheckRollup --jq '.statusCheckRollup | length')
+          echo "checks read on pull request 15: $count"
+          test "$count" -ge 1
+
       - name: Fetch Foreman
         env:
           GH_TOKEN: ${{ secrets.FOREMAN_GH_TOKEN }}
