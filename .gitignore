@@ -1,0 +1,18 @@
+# Foreman's state branch keeps only small state files. These stay on each machine.
+logs/
+worktrees/
+sync/
+jira/
+briefs/
+outbox/
+/stories/*.md
+slots/*/
+slots/*.install
+status.json
+sync.log
+*.tmp
+*.log
+*.lock
+.env*
+*.pem
+*.key
