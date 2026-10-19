@@ -12,7 +12,7 @@ on:
       foreman:
         description: 'The Foreman tag to build the runner from'
         required: true
-        default: 'v0.5.0'
+        default: 'v0.5.1'
         type: string
 
 permissions:
