@@ -96,3 +96,4 @@
 {"at":"2026-10-19T10:36:41.052Z","text":"FP-2: release · waiting for CI","kind":"stage","slot":"w2"}
 {"at":"2026-10-19T10:37:02.193Z","text":"FP-2: release · merging","kind":"stage","slot":"w2"}
 {"at":"2026-10-19T10:37:18.353Z","text":"FP-2 shipped: clampAll() merged via PR #24","kind":"good","slot":"w2"}
+{"at":"2026-10-19T10:37:32.267Z","text":"Factory stopped: Reached the 2 stories asked for.","kind":"warn","slot":null}

@@ -1,0 +1,17 @@
+{
+  "story": "FP-2",
+  "slot": "w2",
+  "result": "shipped",
+  "costUsd": 1.3045534000000003,
+  "turns": 6,
+  "minutes": 4.2,
+  "rounds": 1,
+  "stages": {
+    "architect": 0.6,
+    "build": 0.5,
+    "test": 0.5,
+    "review": 0.5
+  },
+  "startedAt": "2026-10-19T10:33:17.084Z",
+  "endedAt": "2026-10-19T10:37:27.749Z"
+}
