@@ -52,3 +52,18 @@
 {"at":"2026-10-19T10:28:33.842Z","text":"Dashboard at http://127.0.0.1:4317/","kind":"info","slot":null}
 {"at":"2026-10-19T10:28:41.178Z","text":"Slot w1: FP-1","kind":"story","slot":"w1"}
 {"at":"2026-10-19T10:29:10.289Z","text":"Started FP-1 · Add clamp()","kind":"story","slot":"w1"}
+{"at":"2026-10-19T10:29:18.443Z","text":"foreman:architect started on FP-1","kind":"agent","slot":"w1"}
+{"at":"2026-10-19T10:29:44.075Z","text":"foreman:architect finished after 1 min, 3 steps","kind":"agent","slot":"w1"}
+{"at":"2026-10-19T10:29:44.250Z","text":"foreman:builder started on FP-1","kind":"agent","slot":"w1"}
+{"at":"2026-10-19T10:30:06.555Z","text":"foreman:builder finished after 1 min, 4 steps","kind":"agent","slot":"w1"}
+{"at":"2026-10-19T10:30:06.735Z","text":"foreman:tester started on FP-1","kind":"agent","slot":"w1"}
+{"at":"2026-10-19T10:30:40.753Z","text":"foreman:tester finished after 1 min, 3 steps","kind":"agent","slot":"w1"}
+{"at":"2026-10-19T10:30:40.916Z","text":"foreman:builder started on FP-1","kind":"agent","slot":"w1"}
+{"at":"2026-10-19T10:31:05.271Z","text":"foreman:builder finished after 1 min, 6 steps","kind":"agent","slot":"w1"}
+{"at":"2026-10-19T10:31:05.428Z","text":"foreman:tester started on FP-1","kind":"agent","slot":"w1"}
+{"at":"2026-10-19T10:31:38.728Z","text":"foreman:tester finished after 1 min, 3 steps","kind":"agent","slot":"w1"}
+{"at":"2026-10-19T10:31:38.908Z","text":"foreman:compliance-reviewer started on FP-1","kind":"agent","slot":"w1"}
+{"at":"2026-10-19T10:31:38.908Z","text":"foreman:security-reviewer started on FP-1","kind":"agent","slot":"w1"}
+{"at":"2026-10-19T10:31:49.118Z","text":"foreman:security-reviewer finished after 1 min, 2 steps","kind":"agent","slot":"w1"}
+{"at":"2026-10-19T10:31:56.441Z","text":"foreman:compliance-reviewer finished after 1 min, 2 steps","kind":"agent","slot":"w1"}
+{"at":"2026-10-19T10:32:08.926Z","text":"FP-1: commit","kind":"stage","slot":"w1"}
