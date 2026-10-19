@@ -51,3 +51,4 @@
 {"at":"2026-10-19T10:28:33.829Z","text":"Foreman started with 2 slots, for 2 stories.","kind":"info","slot":null}
 {"at":"2026-10-19T10:28:33.842Z","text":"Dashboard at http://127.0.0.1:4317/","kind":"info","slot":null}
 {"at":"2026-10-19T10:28:41.178Z","text":"Slot w1: FP-1","kind":"story","slot":"w1"}
+{"at":"2026-10-19T10:29:10.289Z","text":"Started FP-1 · Add clamp()","kind":"story","slot":"w1"}
