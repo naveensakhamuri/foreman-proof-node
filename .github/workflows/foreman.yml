@@ -25,7 +25,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 300
     env:
-      FOREMAN_VERSION: 'v0.5.0'
+      FOREMAN_VERSION: 'v0.5.1'
       CLAUDE_CODE_VERSION: '2.1.292'
     steps:
       - name: Check out the project
