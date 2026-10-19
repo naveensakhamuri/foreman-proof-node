@@ -45,6 +45,12 @@ export function range(numbers) {
   return max - min;
 }
 
+export function variance(numbers) {
+  if (numbers.length === 0) throw new RangeError('variance() of an empty list');
+  const m = mean(numbers);
+  return sum(numbers.map((n) => (n - m) ** 2)) / numbers.length;
+}
+
 export function sumOfSquares(numbers) {
   if (!Array.isArray(numbers)) throw new TypeError('sumOfSquares() expects an array');
   let total = 0;
