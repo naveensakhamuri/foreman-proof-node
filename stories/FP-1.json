@@ -6,12 +6,16 @@
   "notes": [
     {
       "date": "2026-10-19",
+      "text": "Pull request ready for review: https://github.com/naveensakhamuri/foreman-proof-node/pull/23"
+    },
+    {
+      "date": "2026-10-19",
       "text": "Started."
     }
   ],
   "status": "in-progress",
   "lastEvent": {
-    "event": "started",
-    "note": "Started."
+    "event": "review",
+    "note": "Pull request ready for review: https://github.com/naveensakhamuri/foreman-proof-node/pull/23"
   }
 }
