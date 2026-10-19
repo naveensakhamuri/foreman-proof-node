@@ -25,7 +25,7 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 300
     env:
-      FOREMAN_VERSION: 'v0.5.1'
+      FOREMAN_VERSION: 'v0.5.2'
       CLAUDE_CODE_VERSION: '2.1.292'
     steps:
       - name: Check out the project
@@ -48,7 +48,7 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.FOREMAN_GH_TOKEN }}
         run: |
-          gh repo clone naveensakhamuri/foreman "$RUNNER_TEMP/foreman" -- --depth 1 --branch "$FOREMAN_VERSION"
+          gh repo clone finefactory-ai/foreman "$RUNNER_TEMP/foreman" -- --depth 1 --branch "$FOREMAN_VERSION"
           echo "$RUNNER_TEMP/foreman/plugin/bin" >> "$GITHUB_PATH"
 
       - name: Build one story
