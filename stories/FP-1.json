@@ -1,9 +1,14 @@
 {
   "id": "FP-1",
   "fields": {
-    "started": "2026-10-19"
+    "started": "2026-10-19",
+    "completed": "2026-10-19"
   },
   "notes": [
+    {
+      "date": "2026-10-19",
+      "text": "clamp(value, min, max) now works as a named export of sum.mjs, with TypeError for non-finite input and RangeError when min > max. Verified by npm test (67 of 67) and CI. PR https://github.com/naveensakhamuri/foreman-proof-node/pull/23 is merged and live."
+    },
     {
       "date": "2026-10-19",
       "text": "Pull request ready for review: https://github.com/naveensakhamuri/foreman-proof-node/pull/23"
@@ -13,9 +18,9 @@
       "text": "Started."
     }
   ],
-  "status": "in-progress",
+  "status": "done",
   "lastEvent": {
-    "event": "review",
-    "note": "Pull request ready for review: https://github.com/naveensakhamuri/foreman-proof-node/pull/23"
+    "event": "shipped",
+    "note": "clamp(value, min, max) now works as a named export of sum.mjs, with TypeError for non-finite input and RangeError when min > max. Verified by npm test (67 of 67) and CI. PR https://github.com/naveensakhamuri/foreman-proof-node/pull/23 is merged and live."
   }
 }
