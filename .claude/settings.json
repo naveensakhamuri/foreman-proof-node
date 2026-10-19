@@ -6,8 +6,8 @@
     "foreman": {
       "source": {
         "source": "github",
-        "repo": "naveensakhamuri/foreman",
-        "ref": "v0.5.1"
+        "repo": "finefactory-ai/foreman",
+        "ref": "v0.5.2"
       }
     }
   },

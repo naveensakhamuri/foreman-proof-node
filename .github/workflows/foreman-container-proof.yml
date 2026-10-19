@@ -2,7 +2,7 @@
 # against this repository until one story has shipped, and checks the dashboard answers with
 # its token and refuses without it. Run it by hand from the Actions tab.
 #
-# Secrets: FOREMAN_GH_TOKEN (this repository, and read access to naveensakhamuri/foreman) and
+# Secrets: FOREMAN_GH_TOKEN (this repository, and read access to finefactory-ai/foreman) and
 # CLAUDE_CODE_OAUTH_TOKEN (from `claude setup-token`).
 name: Foreman container proof
 
@@ -12,7 +12,7 @@ on:
       foreman:
         description: 'The Foreman tag to build the runner from'
         required: true
-        default: 'v0.5.1'
+        default: 'v0.5.2'
         type: string
 
 permissions:
@@ -38,7 +38,7 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.FOREMAN_GH_TOKEN }}
           FOREMAN_TAG: ${{ inputs.foreman }}
-        run: gh repo clone naveensakhamuri/foreman foreman -- --depth 1 --branch "$FOREMAN_TAG"
+        run: gh repo clone finefactory-ai/foreman foreman -- --depth 1 --branch "$FOREMAN_TAG"
 
       - name: Build the runner image
         run: docker build -f foreman/runner/Dockerfile -t foreman-runner foreman
