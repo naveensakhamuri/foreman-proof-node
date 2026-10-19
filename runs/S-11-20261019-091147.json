@@ -1,0 +1,17 @@
+{
+  "story": "S-11",
+  "slot": "w1",
+  "result": "shipped",
+  "costUsd": 0.29613510000000004,
+  "turns": 5,
+  "minutes": 2.6,
+  "rounds": 1,
+  "stages": {
+    "architect": 0.4,
+    "build": 0.2,
+    "test": 0.3,
+    "review": 0.2
+  },
+  "startedAt": "2026-10-19T09:11:47.533Z",
+  "endedAt": "2026-10-19T09:14:22.671Z"
+}

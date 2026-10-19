@@ -1,0 +1,1 @@
+{"at":"2026-10-19T09:14:18.589Z","story":"S-11","result":"shipped","stage":"tester","severity":"minor","rule":"scope","where":"stories/S-11.md","observed":"Story file not updated by builder","fix":"Handled by foreman story finalize","builder":"developer"}

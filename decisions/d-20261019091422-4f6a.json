@@ -1,0 +1,15 @@
+{
+  "id": "d-20261019091422-4f6a",
+  "story": "S-11",
+  "kind": "decision",
+  "title": "Follow up on S-11: 1 minor finding(s)?",
+  "options": [
+    "Create a follow-up story",
+    "Ignore"
+  ],
+  "urgent": false,
+  "body": "S-11 shipped with 1 minor finding(s) still open:\n\n- Scope (`stories/S-11.md`): Story file not updated by builder — fix: Handled by foreman story finalize\n\n\"Create a follow-up story\" adds a story, \"Follow-ups from S-11\", to fix them.",
+  "createdAt": "2026-10-19T09:14:22.896Z",
+  "answer": null,
+  "appliedAt": null
+}

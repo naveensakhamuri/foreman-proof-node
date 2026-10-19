@@ -1,0 +1,24 @@
+{
+  "proposed": {
+    "followup:S-11:scope": "d-20261019091422-4f6a"
+  },
+  "ignored": [],
+  "applied": [],
+  "details": {
+    "d-20261019091422-4f6a": {
+      "kind": "followup",
+      "story": "S-11",
+      "keys": [
+        "followup:S-11:scope"
+      ],
+      "findings": [
+        {
+          "rule": "Scope",
+          "where": "stories/S-11.md",
+          "observed": "Story file not updated by builder",
+          "fix": "Handled by foreman story finalize"
+        }
+      ]
+    }
+  }
+}
