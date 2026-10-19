@@ -24,5 +24,13 @@
       ]
     }
   },
-  "slots": 2
+  "slots": 2,
+  "state": {
+    "store": "branch"
+  },
+  "cloud": {
+    "actions": {
+      "cron": "17 6 * * *"
+    }
+  }
 }
