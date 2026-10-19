@@ -81,3 +81,11 @@ export function min(numbers) {
   if (!numbers.every(Number.isFinite)) throw new TypeError('min() expects finite numbers');
   return numbers.reduce((a, b) => (b < a ? b : a));
 }
+
+export function clamp(value, min, max) {
+  if (![value, min, max].every(Number.isFinite)) throw new TypeError('clamp() expects finite numbers');
+  if (min > max) throw new RangeError('clamp() expects min <= max');
+  if (value < min) return min;
+  if (value > max) return max;
+  return value;
+}
