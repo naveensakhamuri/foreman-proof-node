@@ -1,6 +1,31 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { sum, mean, median, mode, range, sumOfSquares, product } from './sum.mjs';
+import { sum, mean, median, mode, range, sumOfSquares, product, variance } from './sum.mjs';
+
+test('variance is the mean squared distance from the mean', () => {
+  assert.equal(variance([2, 4, 4, 4, 5, 5, 7, 9]), 4);
+  assert.equal(variance([1, 2, 3, 4]), 1.25);
+});
+
+test('variance of a single value is 0', () => {
+  assert.equal(variance([3]), 0);
+  assert.equal(variance([4, 4]), 0);
+});
+
+test('variance of an empty list throws', () => {
+  assert.throws(() => variance([]), { name: 'RangeError', message: 'variance() of an empty list' });
+});
+
+test('variance of a list with a non-finite value throws TypeError', () => {
+  assert.throws(() => variance([1, NaN]), TypeError);
+});
+
+test('variance does not change its input', () => {
+  const xs = [2, 4, 4, 4, 5, 5, 7, 9];
+  const copy = [...xs];
+  variance(xs);
+  assert.deepEqual(xs, copy);
+});
 
 test('sum adds numbers', () => {
   assert.equal(sum([1, 2, 3]), 6);
