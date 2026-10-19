@@ -47,3 +47,7 @@
 {"at":"2026-10-19T09:14:18.589Z","text":"S-11 shipped: S-11 min() shipped","kind":"good","slot":"w1"}
 {"at":"2026-10-19T09:14:22.781Z","text":"Factory stopped: Reached the 1 story asked for.","kind":"warn","slot":null}
 {"at":"2026-10-19T09:14:22.909Z","text":"Proposed 1 follow-up(s) from minor findings","kind":"info","slot":null}
+{"at":"2026-10-19T10:28:33.828Z","text":"Factory running","kind":"info","slot":null}
+{"at":"2026-10-19T10:28:33.829Z","text":"Foreman started with 2 slots, for 2 stories.","kind":"info","slot":null}
+{"at":"2026-10-19T10:28:33.842Z","text":"Dashboard at http://127.0.0.1:4317/","kind":"info","slot":null}
+{"at":"2026-10-19T10:28:41.178Z","text":"Slot w1: FP-1","kind":"story","slot":"w1"}

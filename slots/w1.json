@@ -1,1 +1,1 @@
-{"id":"w1","state":"idle","reason":"","parkedFor":null,"since":"2026-10-19T09:14:22.674Z","story":null,"lastBeat":"2026-10-19T09:14:17.954Z","result":null,"parkAfter":false}
+{"id":"w1","state":"building","reason":"","parkedFor":null,"since":"2026-10-19T10:28:40.410Z","story":{"id":"FP-1","title":"","stage":"starting","detail":"preparing the slot","startedAt":"2026-10-19T10:28:40.410Z","rounds":0,"committedAt":null},"lastBeat":"2026-10-19T10:28:54.768Z","result":null,"parkAfter":false}
