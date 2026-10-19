@@ -89,3 +89,8 @@ export function clamp(value, min, max) {
   if (value > max) return max;
   return value;
 }
+
+export function clampAll(numbers, min, max) {
+  if (!Array.isArray(numbers)) throw new TypeError('clampAll() expects an array');
+  return Array.from(numbers, (n) => clamp(n, min, max));
+}

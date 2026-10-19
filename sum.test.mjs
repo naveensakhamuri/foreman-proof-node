@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { sum, mean, median, mode, range, sumOfSquares, product, variance, max, min, clamp } from './sum.mjs';
+import { sum, mean, median, mode, range, sumOfSquares, product, variance, max, min, clamp, clampAll } from './sum.mjs';
 
 test('variance is the mean squared distance from the mean', () => {
   assert.equal(variance([2, 4, 4, 4, 5, 5, 7, 9]), 4);
@@ -329,4 +329,44 @@ test('clamp checks argument types before bound order', () => {
   assert.throws(() => clamp(1, Infinity, 0), { name: 'TypeError', message: 'clamp() expects finite numbers' });
   assert.throws(() => clamp(1, '10', 0), { name: 'TypeError', message: 'clamp() expects finite numbers' });
   assert.throws(() => clamp(1, NaN, 0), { name: 'TypeError' });
+});
+
+test('clampAll clamps each value into range', () => {
+  assert.deepEqual(clampAll([-1, 5, 11], 0, 10), [0, 5, 10]);
+  assert.deepEqual(clampAll([-20, 0, -7], -10, -5), [-10, -5, -7]);
+  assert.deepEqual(clampAll([1, 9], 3, 3), [3, 3]);
+});
+
+test('clampAll of an empty list returns an empty array', () => {
+  assert.deepEqual(clampAll([], 0, 10), []);
+});
+
+test('clampAll returns a new array and does not change its input', () => {
+  const xs = [-1, 5, 11];
+  const out = clampAll(xs, 0, 10);
+  assert.notEqual(out, xs);
+  assert.deepEqual(xs, [-1, 5, 11]);
+  const empty = [];
+  assert.notEqual(clampAll(empty, 0, 10), empty);
+});
+
+test('clampAll of a non-array throws TypeError', () => {
+  for (const bad of ['1,2', undefined, { length: 0 }, new Float64Array([1, 2])]) {
+    assert.throws(() => clampAll(bad, 0, 10), { name: 'TypeError', message: 'clampAll() expects an array' });
+  }
+});
+
+test('clampAll with a non-finite or non-number element throws TypeError', () => {
+  for (const bad of [[1, NaN], [1, '2'], [1, null], [Infinity]]) {
+    assert.throws(() => clampAll(bad, 0, 10), { name: 'TypeError', message: 'clamp() expects finite numbers' });
+  }
+});
+
+test('clampAll rejects a sparse array', () => {
+  assert.throws(() => clampAll([1, , 2], 0, 10), { name: 'TypeError', message: 'clamp() expects finite numbers' });
+});
+
+test('clampAll with bad bounds throws clamp errors', () => {
+  assert.throws(() => clampAll([5], 10, 0), { name: 'RangeError', message: 'clamp() expects min <= max' });
+  assert.throws(() => clampAll([5], 0, NaN), { name: 'TypeError', message: 'clamp() expects finite numbers' });
 });
