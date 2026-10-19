@@ -1,0 +1,66 @@
+# Foreman's container proof (story C5): builds the runner image from Foreman at a tag, runs it
+# against this repository until one story has shipped, and checks the dashboard answers with
+# its token and refuses without it. Run it by hand from the Actions tab.
+#
+# Secrets: FOREMAN_GH_TOKEN (this repository, and read access to naveensakhamuri/foreman) and
+# CLAUDE_CODE_OAUTH_TOKEN (from `claude setup-token`).
+name: Foreman container proof
+
+on:
+  workflow_dispatch:
+    inputs:
+      foreman:
+        description: 'The Foreman tag to build the runner from'
+        required: true
+        default: 'v0.5.0'
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  proof:
+    runs-on: ubuntu-latest
+    timeout-minutes: 150
+    steps:
+      - name: Fetch Foreman
+        env:
+          GH_TOKEN: ${{ secrets.FOREMAN_GH_TOKEN }}
+          FOREMAN_TAG: ${{ inputs.foreman }}
+        run: gh repo clone naveensakhamuri/foreman foreman -- --depth 1 --branch "$FOREMAN_TAG"
+
+      - name: Build the runner image
+        run: docker build -f foreman/runner/Dockerfile -t foreman-runner foreman
+
+      - name: Run the container for one story
+        env:
+          GH_TOKEN: ${{ secrets.FOREMAN_GH_TOKEN }}
+          CLAUDE_CODE_OAUTH_TOKEN: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+        run: |
+          token=$(openssl rand -hex 24)
+          echo "::add-mask::$token"
+          docker run -d --name foreman \
+            -e FOREMAN_REPO="$GITHUB_REPOSITORY" -e FOREMAN_MAX=1 \
+            -e GH_TOKEN -e CLAUDE_CODE_OAUTH_TOKEN -e FOREMAN_DASHBOARD_TOKEN="$token" \
+            -v foreman-work:/work -p 127.0.0.1:4317:4317 foreman-runner
+
+          # The dashboard is up while the story runs: 200 with the token, 401 without.
+          code=000
+          for _ in $(seq 1 120); do
+            code=$(curl -s -o /dev/null -w '%{http_code}' -H "Authorization: Bearer $token" http://127.0.0.1:4317/ || true)
+            [ "$code" = 200 ] && break
+            [ "$(docker inspect -f '{{.State.Running}}' foreman)" = true ] || break
+            sleep 5
+          done
+          echo "dashboard with the token: $code"
+          test "$code" = 200
+          without=$(curl -s -o /dev/null -w '%{http_code}' http://127.0.0.1:4317/)
+          echo "dashboard without the token: $without"
+          test "$without" = 401
+
+          # FOREMAN_MAX=1: the container exits once its story has shipped.
+          test "$(docker wait foreman)" = 0
+
+      - name: The container's log
+        if: always()
+        run: docker logs foreman 2>&1 || true
