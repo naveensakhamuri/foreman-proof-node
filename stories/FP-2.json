@@ -1,0 +1,17 @@
+{
+  "id": "FP-2",
+  "fields": {
+    "started": "2026-10-19"
+  },
+  "notes": [
+    {
+      "date": "2026-10-19",
+      "text": "Started."
+    }
+  ],
+  "status": "in-progress",
+  "lastEvent": {
+    "event": "started",
+    "note": "Started."
+  }
+}
