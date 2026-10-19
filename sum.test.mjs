@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { sum, mean, median, mode, range, sumOfSquares, product, variance } from './sum.mjs';
+import { sum, mean, median, mode, range, sumOfSquares, product, variance, max } from './sum.mjs';
 
 test('variance is the mean squared distance from the mean', () => {
   assert.equal(variance([2, 4, 4, 4, 5, 5, 7, 9]), 4);
@@ -222,4 +222,38 @@ test('product does not change its input', () => {
   const xs = [2, 3, 4];
   product(xs);
   assert.deepEqual(xs, [2, 3, 4]);
+});
+
+test('max returns the largest value', () => {
+  assert.equal(max([3, 9, 2]), 9);
+  assert.equal(max([9, 3, 2]), 9);
+  assert.equal(max([2, 3, 9]), 9);
+});
+
+test('max of a single negative value', () => {
+  assert.equal(max([-5]), -5);
+  assert.equal(max([-5, -2, -9]), -2);
+  assert.equal(max([4, 4]), 4);
+});
+
+test('max of an empty list throws', () => {
+  assert.throws(() => max([]), { name: 'RangeError', message: 'max() of an empty list' });
+});
+
+test('max of a non-array throws TypeError', () => {
+  for (const bad of ['1,2', undefined, { length: 0 }, new Float64Array(2)]) {
+    assert.throws(() => max(bad), { name: 'TypeError', message: 'max() expects an array' });
+  }
+});
+
+test('max of a non-finite or non-number value throws TypeError', () => {
+  for (const bad of [[1, NaN], [1, Infinity], [1, '2'], [1, null]]) {
+    assert.throws(() => max(bad), { name: 'TypeError', message: 'max() expects finite numbers' });
+  }
+});
+
+test('max does not change its input', () => {
+  const input = [3, 9, 2];
+  max(input);
+  assert.deepEqual(input, [3, 9, 2]);
 });

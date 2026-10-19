@@ -67,3 +67,10 @@ export function product(numbers) {
   if (!numbers.every(Number.isFinite)) throw new TypeError('product() expects finite numbers');
   return numbers.reduce((total, n) => total * n, 1);
 }
+
+export function max(numbers) {
+  if (!Array.isArray(numbers)) throw new TypeError('max() expects an array');
+  if (numbers.length === 0) throw new RangeError('max() of an empty list');
+  if (!numbers.every(Number.isFinite)) throw new TypeError('max() expects finite numbers');
+  return numbers.reduce((a, b) => (b > a ? b : a));
+}
