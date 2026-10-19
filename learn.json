@@ -1,6 +1,8 @@
 {
   "proposed": {
-    "followup:S-11:scope": "d-20261019091422-4f6a"
+    "followup:S-11:scope": "d-20261019091422-4f6a",
+    "followup:FP-1:edge case not covered by design": "d-20261019103733-9d05",
+    "followup:FP-2:diff against base branch": "d-20261019103733-1ce4"
   },
   "ignored": [],
   "applied": [],
@@ -17,6 +19,36 @@
           "where": "stories/S-11.md",
           "observed": "Story file not updated by builder",
           "fix": "Handled by foreman story finalize"
+        }
+      ]
+    },
+    "d-20261019103733-9d05": {
+      "kind": "followup",
+      "story": "FP-1",
+      "keys": [
+        "followup:FP-1:edge case not covered by design"
+      ],
+      "findings": [
+        {
+          "rule": "Edge case not covered by design",
+          "where": "/Users/naveensakhamuri/IdeaProjects/foreman-proof-node-1/.foreman/worktrees/w1/sum.mjs:89",
+          "observed": "clamp(-0, 0, 10) returns -0, because -0 < 0 is false so the value passes through. This matches common clamp behaviour (Math.min/Math.max style) and the story says nothing about signed zero",
+          "fix": "None needed. Note it only if the project later wants signed-zero normalisation"
+        }
+      ]
+    },
+    "d-20261019103733-1ce4": {
+      "kind": "followup",
+      "story": "FP-2",
+      "keys": [
+        "followup:FP-2:diff against base branch"
+      ],
+      "findings": [
+        {
+          "rule": "Diff against base branch",
+          "where": "/Users/naveensakhamuri/IdeaProjects/foreman-proof-node-1/.foreman/worktrees/w2/sum.mjs:85",
+          "observed": "The local `main` ref is stale. It sits at f200415 and does not have FP-1, so `git diff main` also shows clamp() and its 7 tests as new. HEAD (story/fp-2) is 9d1e2fb, the same commit as origin/main with FP-1 merged. `git diff HEAD` shows only the clampAll export, the import change and the 7 clampAll tests. This story's change is in scope",
+          "fix": "Fast-forward local main to origin/main (`git fetch && git branch -f main origin/main`) before the next review, or diff against origin/main"
         }
       ]
     }

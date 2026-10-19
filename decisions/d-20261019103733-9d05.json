@@ -1,0 +1,15 @@
+{
+  "id": "d-20261019103733-9d05",
+  "story": "FP-1",
+  "kind": "decision",
+  "title": "Follow up on FP-1: 1 minor finding(s)?",
+  "options": [
+    "Create a follow-up story",
+    "Ignore"
+  ],
+  "urgent": false,
+  "body": "FP-1 shipped with 1 minor finding(s) still open:\n\n- Edge case not covered by design (`/Users/naveensakhamuri/IdeaProjects/foreman-proof-node-1/.foreman/worktrees/w1/sum.mjs:89`): clamp(-0, 0, 10) returns -0, because -0 < 0 is false so the value passes through. This matches common clamp behaviour (Math.min/Math.max style) and the story says nothing about signed zero — fix: None needed. Note it only if the project later wants signed-zero normalisation\n\n\"Create a follow-up story\" adds a story, \"Follow-ups from FP-1\", to fix them.",
+  "createdAt": "2026-10-19T10:37:33.234Z",
+  "answer": null,
+  "appliedAt": null
+}

@@ -1,0 +1,15 @@
+{
+  "id": "d-20261019103733-1ce4",
+  "story": "FP-2",
+  "kind": "decision",
+  "title": "Follow up on FP-2: 1 minor finding(s)?",
+  "options": [
+    "Create a follow-up story",
+    "Ignore"
+  ],
+  "urgent": false,
+  "body": "FP-2 shipped with 1 minor finding(s) still open:\n\n- Diff against base branch (`/Users/naveensakhamuri/IdeaProjects/foreman-proof-node-1/.foreman/worktrees/w2/sum.mjs:85`): The local `main` ref is stale. It sits at f200415 and does not have FP-1, so `git diff main` also shows clamp() and its 7 tests as new. HEAD (story/fp-2) is 9d1e2fb, the same commit as origin/main with FP-1 merged. `git diff HEAD` shows only the clampAll export, the import change and the 7 clampAll tests. This story's change is in scope — fix: Fast-forward local main to origin/main (`git fetch && git branch -f main origin/main`) before the next review, or diff against origin/main\n\n\"Create a follow-up story\" adds a story, \"Follow-ups from FP-2\", to fix them.",
+  "createdAt": "2026-10-19T10:37:33.235Z",
+  "answer": null,
+  "appliedAt": null
+}
