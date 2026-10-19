@@ -1,6 +1,6 @@
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { sum, mean, median, mode, range, sumOfSquares, product, variance, max } from './sum.mjs';
+import { sum, mean, median, mode, range, sumOfSquares, product, variance, max, min } from './sum.mjs';
 
 test('variance is the mean squared distance from the mean', () => {
   assert.equal(variance([2, 4, 4, 4, 5, 5, 7, 9]), 4);
@@ -255,5 +255,39 @@ test('max of a non-finite or non-number value throws TypeError', () => {
 test('max does not change its input', () => {
   const input = [3, 9, 2];
   max(input);
+  assert.deepEqual(input, [3, 9, 2]);
+});
+
+test('min returns the smallest value', () => {
+  assert.equal(min([3, 9, 2]), 2);
+  assert.equal(min([9, 3, 2]), 2);
+  assert.equal(min([2, 3, 9]), 2);
+});
+
+test('min of a single negative value', () => {
+  assert.equal(min([-5]), -5);
+  assert.equal(min([-5, -2, -9]), -9);
+  assert.equal(min([4, 4]), 4);
+});
+
+test('min of an empty list throws', () => {
+  assert.throws(() => min([]), { name: 'RangeError', message: 'min() of an empty list' });
+});
+
+test('min of a non-array throws TypeError', () => {
+  for (const bad of ['1,2', undefined, { length: 0 }, new Float64Array(2)]) {
+    assert.throws(() => min(bad), { name: 'TypeError', message: 'min() expects an array' });
+  }
+});
+
+test('min of a non-finite or non-number value throws TypeError', () => {
+  for (const bad of [[1, NaN], [1, Infinity], [1, '2'], [1, null]]) {
+    assert.throws(() => min(bad), { name: 'TypeError', message: 'min() expects finite numbers' });
+  }
+});
+
+test('min does not change its input', () => {
+  const input = [3, 9, 2];
+  min(input);
   assert.deepEqual(input, [3, 9, 2]);
 });
