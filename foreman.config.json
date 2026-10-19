@@ -32,5 +32,14 @@
     "actions": {
       "cron": "17 6 * * *"
     }
+  },
+  "stories": {
+    "adapter": "jira",
+    "site": "finefactory.atlassian.net",
+    "jql": "project = FP AND labels = foreman AND statusCategory != Done ORDER BY Rank",
+    "transitions": {
+      "started": "In Progress",
+      "shipped": "Done"
+    }
   }
 }
